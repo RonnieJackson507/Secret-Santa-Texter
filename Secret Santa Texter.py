@@ -2,15 +2,22 @@
 # Texts the people who wants to give a gift to to keep it anonymous
 import random
 
-# Initialize an empty list to store the names, addresses, and phone numbers
-entries = []
+# Initialize empty lists to store the names, addresses, and phone numbers
+participants = [] # People that are participating
+receivers = [] # People that receives the gift
+givers = [] # People that gives the gitft
 
-# Ask the User for the entries of the people participating
+# Display the header of the program
 print("Secret Sata Texter")
 print("Hello, please put in every detail of the people participating individually.")
 print("After giving the details, this program will text the people seperately.")
 
+# Ask the User for the entries of the people participating
 while True:
+    # Check that we have enough participants
+    if len(participants) < 2:
+        print("Need at least 2 participants for Secret Santa!")
+
     name = input("Enter name (or type 'done' to finish): ")
     print()
 
@@ -25,11 +32,30 @@ while True:
     print()
 
     # Append the collected entry as a tuple to the list
-    entries.append((name, address, phone_number))
+    participants.append((name, address, phone_number))
 
-# Randomize the participants to send the texts to
-random.shuffle(entries)
+givers = participants[:]
+receivers = participants[:]
 
-# Display the enteries
-for entry in entries:
-    print(f"name: {entry[0]}, address: {entry[1]}, phone number: {entry[2]}")
+#TODO fix the shuffling
+
+# Randomize the receivers that the givers will send a gift to
+random.shuffle(receivers)
+
+# Create a dictionary to store assignments
+assignments = {}
+
+for i in range(len(givers)):
+    # If a giver is paired with themselves or if a receiver is already assigned, reshuffle
+    while (givers[i] == receivers[i] or receivers[i] in assignments.values()):
+        random.shuffle(receivers)
+
+    # Debug
+    print(f"{givers[i][0]} is Secret Santa for {receivers[i][0]}")
+
+    #TODO Send texts to the participants
+
+# Debug: Display the enteries
+#for i in range(len(participants)):
+#    print(f"name: {givers[i][0]}, address: {givers[i][1]}, phone number: {givers[i][2]}")
+#    print(f"name: {receivers[i][0]}, address: {receivers[i][1]}, phone number: {receivers[i][2]}")

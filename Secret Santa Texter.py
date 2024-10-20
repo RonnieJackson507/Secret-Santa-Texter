@@ -35,20 +35,17 @@ while True:
     participants.append((name, address, phone_number))
 
 givers = participants[:]
-receivers = participants[:]
+receivers = []
 
-#TODO fix the shuffling
-
-# Randomize the receivers that the givers will send a gift to
-random.shuffle(receivers)
-
-# Create a dictionary to store assignments
-assignments = {}
+# Randomize the participants that the givers will send a gift to
+random.shuffle(participants)
 
 for i in range(len(givers)):
     # If a giver is paired with themselves or if a receiver is already assigned, reshuffle
-    while (givers[i] == receivers[i] or receivers[i] in assignments.values()):
-        random.shuffle(receivers)
+    while (givers[i] == participants[0]):
+        random.shuffle(participants)
+
+    receivers.append(participants.pop(0))
 
     # Debug
     print(f"{givers[i][0]} is Secret Santa for {receivers[i][0]}")

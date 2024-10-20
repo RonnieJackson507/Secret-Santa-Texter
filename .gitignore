@@ -2,6 +2,9 @@
 venv/
 myenv/
 
+# Ignore the input file
+input.txt
+
 # Ignore other common files
 __pycache__/
 *.pyc

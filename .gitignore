@@ -2,6 +2,9 @@
 venv/
 myenv/
 
+# Ignore enviroments
+.env
+
 # Ignore the input file
 input.txt
 

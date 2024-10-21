@@ -1,6 +1,16 @@
 # Secret Santa Texter
 # Texts the people who wants to give a gift to to keep it anonymous
 import random
+import os
+from dotenv import load_dotenv
+
+#TODO find an free api to send texts
+
+# Load enviroment variables from .env file
+load_dotenv()
+
+# Retrieve sensitive information from enviornment variables
+
 
 # Initialize empty lists to store the names, addresses, and phone numbers
 participants = [] # People that are participating

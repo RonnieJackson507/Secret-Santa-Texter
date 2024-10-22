@@ -44,25 +44,21 @@ while True:
     # Append the collected entry as a tuple to the list
     participants.append((name, address, phone_number))
 
-# Set the giver list the same elements as the participants list
+# Set the lists the same elements as the participants list
 givers = participants[:]
+receivers = participants[:]
 
-# Randomize the participants that the givers will send a gift to
-random.shuffle(participants)
+# Shuffle the receivers list to randomize the pairings
+random.shuffle(receivers)
 
-# Go thru each participant and assign the gifters their person to send a gift too
-# And text each gifter the information of the receiver
-for i in range(len(givers)):
-    # If a giver is paired with themselves reshuffle
-    while (givers[i] == participants[0]):
-        random.shuffle(participants)
+# Re-shuffle if someone is paired with themselves
+while any(giver == receiver for giver, receiver in zip(givers, receivers)):
+    random.shuffle(receivers)
 
-    receivers.append(participants.pop(0))
-
-    # Debug
-    print(f"{givers[i][0]} is Secret Santa for {receivers[i][0]}")
-
-    message = f"Merry Early Xmas {givers[i][0]}! This is a Secret Santa Texting program! Your person Secret Santa is {receivers[i][0]}. The address to ship their gift is {receivers[i][1]}."
+# Text each gifter the information of the receiver
+for giver, receiver in zip(givers, receivers):
+    # Message for sending the gifter about who is their Secret Santa
+    message = f"Merry Xmas {giver[0]}! This is a Secret Santa Texting program! Your Secret Santa is {receiver[0]}. The address to ship their gift is {receiver[1]}."
 
     #TODO Send texts to the participants
     print(message)

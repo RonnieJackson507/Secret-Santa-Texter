@@ -22,6 +22,10 @@ print("Secret Sata Texter")
 print("Hello, please put in every detail of the people participating individually.")
 print("After giving the details, this program will text the people seperately.")
 
+# Ask the User for the budget
+budget = input("Enter the amount for the Budget: ")
+print()
+
 # Ask the User for the entries of the people participating
 while True:
     # Check that we have enough participants
@@ -58,7 +62,7 @@ while any(giver == receiver for giver, receiver in zip(givers, receivers)):
 # Text each gifter the information of the receiver
 for giver, receiver in zip(givers, receivers):
     # Message for sending the gifter about who is their Secret Santa
-    message = f"Merry Xmas {giver[0]}! This is a Secret Santa Texting program! Your Secret Santa is {receiver[0]}. The address to ship their gift is {receiver[1]}."
+    message = f"Merry Xmas {giver[0]}! This is a Secret Santa Texting Program! Your Secret Santa is {receiver[0]} and the budget is ${budget}. The address to ship their gift is {receiver[1]}."
 
     #TODO Send texts to the participants
     print(message)

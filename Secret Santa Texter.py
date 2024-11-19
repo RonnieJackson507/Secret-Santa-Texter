@@ -48,6 +48,13 @@ while True:
     # Append the collected entry as a tuple to the list
     participants.append((name, address, phone_number))
 
+file_flag = True if input("Would you like a .txt file instead of texting? (Type Y for yes and N for no)").lower() == 'y' else False
+print()
+if file_flag:
+    print("The output file is output.txt")
+    with open("output.txt", "w") as file:
+        file.write("")
+
 # Set the lists the same elements as the participants list
 givers = participants[:]
 receivers = participants[:]
@@ -62,7 +69,11 @@ while any(giver == receiver for giver, receiver in zip(givers, receivers)):
 # Text each gifter the information of the receiver
 for giver, receiver in zip(givers, receivers):
     # Message for sending the gifter about who is their Secret Santa
-    message = f"Merry Xmas {giver[0]}! This is a Secret Santa Texting Program! Your Secret Santa is {receiver[0]} and the budget is ${budget}. The address to ship their gift is {receiver[1]}."
+    message = f"Merry Xmas {giver[0]}! Your Secret Santa is {receiver[0]} and the budget is ${budget}. The address to ship their gift is {receiver[1]}."
 
-    #TODO Send texts to the participants
-    print(message)
+    if file_flag:
+        with open("output.txt", "a") as file:
+            file.write(message + "\n")
+    else:
+        #TODO Send texts to the participants
+        print(message)

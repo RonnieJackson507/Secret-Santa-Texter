@@ -5,8 +5,9 @@ myenv/
 # Ignore enviroments
 .env
 
-# Ignore the input file
+# Ignore the input and output file
 input.txt
+output.txt
 
 # Ignore other common files
 __pycache__/
